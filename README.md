@@ -8,6 +8,8 @@
 
 # Contents
 
+- [asdf-go  ](#asdf-go--)
+- [Contents](#contents)
 - [Dependencies](#dependencies)
 - [Install](#install)
 - [Contributing](#contributing)
@@ -15,10 +17,8 @@
 
 # Dependencies
 
-**TODO: adapt this section**
-
-- `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
+- `jq`, `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
+- `ASDF_GO_DEMO_DOWNLOADED_RELEASES_DIRECTORY`: Define this variable before installing a version for demonstration purpose to avoid download delay/errors. It will not download release file from go website, but will look for files in this given directory. Only used in the `bin/download` script
 
 # Install
 

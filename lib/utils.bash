@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for go.
 GH_REPO="https://github.com/golang/go"
 TOOL_NAME="go"
 TOOL_TEST="go version"

@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-# export ASDF_INSTALL_VERSION=1.22.2
-# export ASDF_DOWNLOAD_PATH=$(mktemp -d)
-
-# In demonstration mode, define this variable to
-# store desired released tar.gz in a dedicated directory and avoid download delay/errors.
-# ASDF_GO_DEMO_DOWNLOADED_RELEASES_DIRECTORY=/tmp/debug-go
-
 set -euo pipefail
 
 current_script_path=${BASH_SOURCE[0]}
@@ -17,18 +10,14 @@ source "${plugin_dir}/lib/utils.bash"
 
 mkdir -p "$ASDF_DOWNLOAD_PATH"
 
-# TODO: Adapt this to proper extension and adapt extracting strategy.
-release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME-$ASDF_INSTALL_VERSION.tar.gz"
-
 if [ -z ${ASDF_GO_DEMO_DOWNLOADED_RELEASES_DIRECTORY+x} ]; then
-	# Download tar.gz file to the download directory
+	release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME-$ASDF_INSTALL_VERSION.tar.gz"
 	download_release "$ASDF_INSTALL_VERSION" "$release_file"
-	#  Extract contents of tar.gz file into the download directory
 	tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" --strip-components=1 || fail "Could not extract $release_file"
+	rm "$release_file"
 else
+	release_file="$ASDF_DOWNLOAD_PATH/$TOOL_NAME-$ASDF_INSTALL_VERSION.tar.gz"
 	cp "$ASDF_GO_DEMO_DOWNLOADED_RELEASES_DIRECTORY/$ASDF_INSTALL_VERSION.tar.gz" "$release_file" || fail "Cannot find $ASDF_INSTALL_VERSION in $ASDF_GO_DEMO_DOWNLOADED_RELEASES_DIRECTORY, please download it first before demo"
 	tar -xzf "$release_file" -C "$ASDF_DOWNLOAD_PATH" --strip-components=1 || fail "Could not extract $release_file"
+	rm "$release_file"
 fi
-
-# Remove the tar.gz file since we don't need to keep it
-rm "$release_file"
