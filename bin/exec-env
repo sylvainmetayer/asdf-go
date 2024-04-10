@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ "${ASDF_INSTALL_VERSION}" != 'system' ]; then
+	if [[ "unset" == "${GOROOT:-unset}" ]]; then
+		echo "$ASDF_INSTALL_PATH"
+		export GOROOT=$ASDF_INSTALL_PATH/go
+	fi
+fi
