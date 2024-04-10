@@ -2,6 +2,6 @@
 
 if [ "${ASDF_INSTALL_VERSION}" != 'system' ]; then
 	if [[ "unset" == "${GOROOT:-unset}" ]]; then
-		export GOROOT=$ASDF_INSTALL_PATH/go
+		export GOROOT=$ASDF_INSTALL_PATH
 	fi
 fi
